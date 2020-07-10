@@ -1,6 +1,12 @@
 pipeline {
   agent any
   stages {
+    stage('Flutter Doctor') {
+      steps {
+        bat 'flutter doctor'
+      }
+    }
+
     stage('SCA') {
       steps {
         catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
@@ -21,10 +27,13 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'flutter build apk --debug'
+        bat 'flutter build apk --${params.BUILD_TYPE}'
         archiveArtifacts '**/*.apk'
       }
     }
 
+  }
+  parameters {
+    choice(name: 'BUILD_TYPE', choices: ['debug', 'release'], description: 'Build Type for APK')
   }
 }
