@@ -27,7 +27,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'flutter build apk --${params.BUILD_TYPE}'
+        bat 'flutter build apk --%BUILD_TYPE%'
         archiveArtifacts '**/*.apk'
       }
     }
