@@ -9,17 +9,22 @@ void main() {
 
 test('Sample test add', () {
     // SETUP
-    final sum = 1 + 3;
+    final result = 1 + 3;
     // EXPECTATION
-    expect(sum, 4);
+    expect(result, 4);
   });
   test('Sample test multiply', () {
     // SETUP
-    final sum = 1 * 3;
+    final result = 1 * 3;
     // EXPECTATION
-    expect(sum, 3);
+    expect(result, 3);
   });
-
+  test('Sample test divide', () {
+    // SETUP
+    final result = 6 * 3;
+    // EXPECTATION
+    expect(result, 3);
+  });
   test('Fetch item returns a item model', () async {
     final mockClient = MockClient((request) async {
       final jsonMap = {'id': 123};
