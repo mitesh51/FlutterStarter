@@ -19,12 +19,6 @@ test('Sample test add', () {
     // EXPECTATION
     expect(result, 3);
   });
-  test('Sample test divide', () {
-    // SETUP
-    final result = 6 * 3;
-    // EXPECTATION
-    expect(result, 3);
-  });
   test('Fetch item returns a item model', () async {
     final mockClient = MockClient((request) async {
       final jsonMap = {'id': 123};
