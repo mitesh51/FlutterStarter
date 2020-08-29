@@ -7,8 +7,12 @@ pipeline:
   - stage: 'Flutter Doctor'
     steps:
      - bat 'flutter doctor'
-     
   - stage: 'SCA'
+    steps:
+     - "catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+          bat 'flutter analyze'
+        }"     
+  - stage: 'Test & Coverage'
     steps:
      - bat 'flutter pub get && flutter pub global activate junitreport && flutter test --machine | tojunit --output test.xml'
      - junit 'test.xml'
@@ -18,8 +22,3 @@ pipeline:
     steps:
      - bat 'flutter build apk --debug'
      - archiveArtifacts '**/*.apk'
-
-# Define post actions
-# post:
-#   always:
-#     - cleanWs()    
